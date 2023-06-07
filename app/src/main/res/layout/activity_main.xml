@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <!-- MTN button -->
+    <Button
+        android:id="@+id/mtn_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MTN"
+        android:textSize="24sp"
+        />
+
+    <!-- Orange button -->
+    <Button
+        android:id="@+id/orange_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orange"
+        android:textSize="24sp"
+        />
+
+    <!-- Camtel button -->
+    <Button
+        android:id="@+id/camtel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Camtel"
+        android:textSize="24sp"
+        />
+
+</LinearLayout>
