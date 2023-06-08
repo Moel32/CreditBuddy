@@ -19,7 +19,7 @@ import android.view.MenuItem
 class OrangeActivity : AppCompatActivity() {
 
     // Define the USSD code to execute
-    private val ussdCode = "*123#" // Replace with your desired USSD code
+    private val ussdCode = "*#06#" // Replace with your desired USSD code
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,81 +40,19 @@ class OrangeActivity : AppCompatActivity() {
         } else {
 
             // Execute the USSD code if permission has already been granted
-            val result = executeUssdCode(ussdCode)
-            textView.text = result
-        }
-    }
-
-    /**
-     * Executes the given USSD code.
-     *
-     * @param ussdCode The USSD code to execute.
-     * @return The result of the USSD code execution.
-     */
-    private fun executeUssdCode(ussdCode: String): String? {
-        //val encodedUssdCode = Uri.encode(ussdCode)
-        //val ussdUri = Uri.parse("tel:$encodedUssdCode")
-        val ussdUri = Uri.parse("tel:$ussdCode")
-        val ussdIntent = Intent(Intent.ACTION_CALL, ussdUri)
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // Handle permission not granted error
-            Log.e(ContentValues.TAG, "CALL_PHONE permission not granted")
-            return "CALL_PHONE permission not granted"
-        }
-
-        try {
-            startActivity(ussdIntent)
-        } catch (e: SecurityException) {
-            // Handle security exception error
-            Log.e(ContentValues.TAG, "SecurityException: ${e.message}")
-            return "SecurityException: ${e.message}"
-        } catch (e: Exception) {
-            // Handle other errors
-            Log.e(ContentValues.TAG, "Error: ${e.message}")
-            return "Error: ${e.message}"
-        }
-
-        // Wait for the USSD response
-        val handler = Handler()
-        var ussdResponse: String? = null
-        handler.postDelayed({
-            val ussdResultIntent = Intent(Intent.ACTION_CALL, Uri.parse("tel:*#1234#"))
-            try {
-                startActivityForResult(ussdResultIntent, 1)
-            } catch (e: Exception) {
-                // Handle error getting USSD response
-                Log.e(ContentValues.TAG, "Error getting USSD response: ${e.message}")
-                ussdResponse = "Error getting USSD response: ${e.message}"
-            }
-        }, 5000) // Wait 5 seconds for the USSD response to arrive
-
-        // Return the USSD response or error message
-        return ussdResponse
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            val ussdResponse = data?.getStringExtra("ussdResponse")
-            Log.d(ContentValues.TAG, "USSD response: $ussdResponse")
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            MainActivity.PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission granted, execute the USSD code and display the result
-                    val textView = findViewById<TextView>(R.id.textView)
-                    val result = executeUssdCode(ussdCode) // Replace with your desired USSD code
-                    textView.text = result
+            val ussdUtil = UssdUtil(this)
+            ussdUtil.executeUssdCode(ussdCode, { success, response ->
+                if (success) {
+                    // Handle USSD response
+                    textView.text = response
+                } else {
+                    // Handle USSD response failure
+                    textView.text = response
                 }
-            }
+            })
         }
     }
+
 
     // Handle clicks on the "home" button in the action bar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
