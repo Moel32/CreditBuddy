@@ -19,8 +19,16 @@ import android.view.MenuItem
 class OrangeActivity : AppCompatActivity() {
 
     // Define the USSD code to execute
-    private val ussdCode = "*#06#" // Replace with your desired USSD code
+    /**
+     * Ussd code
+     */
+    private val ussdCode = "#123#" // Replace with your desired USSD code
 
+    /**
+     * TODO
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mtn)
@@ -55,6 +63,12 @@ class OrangeActivity : AppCompatActivity() {
 
 
     // Handle clicks on the "home" button in the action bar
+    /**
+     * TODO
+     *
+     * @param item
+     * @return
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

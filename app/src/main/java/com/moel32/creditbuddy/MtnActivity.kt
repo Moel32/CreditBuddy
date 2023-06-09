@@ -20,8 +20,16 @@ import android.telephony.TelephonyManager
 class MtnActivity : AppCompatActivity() {
 
     // Define the USSD code to execute
-    private val ussdCode = "*444*#" // Replace with your desired USSD code
+    /**
+     * Ussd code
+     */
+    private val ussdCode = "*155#" // Replace with your desired USSD code
 
+    /**
+     * TODO
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mtn)
@@ -30,6 +38,9 @@ class MtnActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Find the text view by its ID
+        /**
+         * Text view
+         */
         val textView = findViewById<TextView>(R.id.textView)
 
         // Check if the app has permission to make phone calls
@@ -55,6 +66,12 @@ class MtnActivity : AppCompatActivity() {
     }
 
     // Handle clicks on the "home" button in the action bar
+    /**
+     * TODO
+     *
+     * @param item
+     * @return
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

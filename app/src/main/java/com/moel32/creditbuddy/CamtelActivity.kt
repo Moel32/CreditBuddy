@@ -18,8 +18,16 @@ import androidx.core.content.ContextCompat
 class CamtelActivity : AppCompatActivity() {
 
     // Define the USSD code to execute
-    private val ussdCode = "*#06#"// Replace with your desired USSD code
+    /**
+     * Ussd code
+     */
+    private val ussdCode = "*825#"// Replace with your desired USSD code
 
+    /**
+     * TODO
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mtn)
@@ -28,6 +36,9 @@ class CamtelActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Find the text view by its ID
+        /**
+         * Text view
+         */
         val textView = findViewById<TextView>(R.id.textView)
 
         // Check if the app has permission to make phone calls
@@ -39,6 +50,9 @@ class CamtelActivity : AppCompatActivity() {
         } else {
 
             // Execute the USSD code if permission has already been granted
+            /**
+             * Ussd util
+             */
             val ussdUtil = UssdUtil(this)
             ussdUtil.executeUssdCode(ussdCode, { success, response ->
                 if (success) {
@@ -53,6 +67,12 @@ class CamtelActivity : AppCompatActivity() {
     }
 
     // Handle clicks on the "home" button in the action bar
+    /**
+     * TODO
+     *
+     * @param item
+     * @return
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

@@ -10,17 +10,31 @@ import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
+
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * Companion
+     *
+     * @constructor Create empty Companion
+     */
     companion object {
         const val PERMISSION_REQUEST_CODE = 1
     }
 
+    /**
+     * TODO
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Find the MTN button view by its ID
+        /**
+         * Mtn button
+         */
         val mtnButton = findViewById<Button>(R.id.mtn_button)
 
         // Set a click listener for the MTN button
@@ -30,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Find the Orange button view by its ID
+        /**
+         * Orange button
+         */
         val orangeButton = findViewById<Button>(R.id.orange_button)
 
         // Set a click listener for the Orange button
@@ -39,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Find the Camtel button view by its ID
+        /**
+         * Camtel button
+         */
         val camtelButton = findViewById<Button>(R.id.camtel_button)
 
         // Set a click listener for the Camtel button

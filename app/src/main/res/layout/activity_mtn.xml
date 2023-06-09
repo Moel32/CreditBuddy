@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +10,11 @@
     <!-- MTN logo -->
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="201dp"
+        android:layout_width="381dp"
         android:layout_height="153dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/mtn_logo" />
+        android:contentDescription="@string/mtn_logo"
+        app:srcCompat="@drawable/mtn" />
 
     <!-- Result text view -->
     <TextView

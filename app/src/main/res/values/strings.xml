@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Credit Buddy</string>
+    <string name="mtn_logo">mtn logo</string>
+    <string name="orange_logo">orange logo</string>
+    <string name="camtel_logo">camtel logo</string>
 </resources>
